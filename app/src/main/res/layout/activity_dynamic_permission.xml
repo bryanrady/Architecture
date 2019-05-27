@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <include layout="@layout/toolbar_layout"/>
+
+    <Button
+        android:id="@+id/btn_permission_apply_single"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="申请单个权限" />
+
+    <Button
+        android:id="@+id/btn_permission_apply_multiple"
+        android:layout_below="@+id/btn_permission_apply_single"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="申请多个权限" />
+
+    <Button
+        android:id="@+id/btn_permission_apply_location"
+        android:layout_below="@+id/btn_permission_apply_multiple"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="申请定位权限" />
+
+    <Button
+        android:id="@+id/btn_permission_apply_service"
+        android:layout_below="@+id/btn_permission_apply_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+        android:text="开启Service,在Service中申请权限" />
+
+    <Button
+        android:id="@+id/btn_permission_apply_fragment"
+        android:layout_below="@+id/btn_permission_apply_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+        android:text="开启Fragment,在开启Fragment中申请权限" />
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_below="@+id/btn_permission_apply_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+</RelativeLayout>

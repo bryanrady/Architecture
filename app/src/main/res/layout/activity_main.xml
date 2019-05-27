@@ -1,18 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bryanrady.architecture.MainActivity">
+    android:fitsSystemWindows="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include layout="@layout/toolbar_layout"/>
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:layout_below="@+id/toolbar">
 
-</android.support.constraint.ConstraintLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_rxJava"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="RxJava" />
+
+            <Button
+                android:id="@+id/btn_aop"
+                android:layout_below="@+id/btn_rxJava"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="Aop" />
+
+            <Button
+                android:id="@+id/btn_dagger2"
+                android:layout_below="@+id/btn_aop"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="Dagger2" />
+
+            <Button
+                android:id="@+id/btn_eventbus"
+                android:layout_below="@+id/btn_dagger2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="EventBus" />
+
+            <Button
+                android:id="@+id/btn_hermes"
+                android:layout_below="@+id/btn_eventbus"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="Hermes" />
+
+            <Button
+                android:id="@+id/btn_glide"
+                android:layout_below="@+id/btn_hermes"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="Glide" />
+
+            <Button
+                android:id="@+id/btn_mvp"
+                android:layout_below="@+id/btn_glide"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="MVP" />
+
+            <Button
+                android:id="@+id/btn_retrofit"
+                android:layout_below="@+id/btn_mvp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="Retrofit" />
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
