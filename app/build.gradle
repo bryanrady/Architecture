@@ -26,15 +26,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
     //butterknife
     implementation 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-
     //dagger
     implementation 'com.google.dagger:dagger:2.9'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.9'
-
     //retrofit gson
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
@@ -42,12 +39,11 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.google.code.gson:gson:2.4'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-
     //rxjava
     implementation 'io.reactivex.rxjava2:rxjava:2.1.14'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
-
     //glide
     implementation 'com.github.bumptech.glide:glide:4.7.1'
-
+    implementation project(':pluginstandard')
+    implementation project(':lib_permission')
 }

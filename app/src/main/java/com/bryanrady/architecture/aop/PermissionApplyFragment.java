@@ -11,9 +11,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.bryanrady.architecture.R;
-import com.bryanrady.architecture.aop.annotation.NeedPermission;
-import com.bryanrady.architecture.aop.annotation.PermissionCanceled;
-import com.bryanrady.architecture.aop.annotation.PermissionDenied;
+import com.bryanrady.lib_permission.annotation.NeedPermission;
+import com.bryanrady.lib_permission.annotation.PermissionCanceled;
+import com.bryanrady.lib_permission.annotation.PermissionDenied;
 
 /**
  * Created by Administrator on 2019/2/26.

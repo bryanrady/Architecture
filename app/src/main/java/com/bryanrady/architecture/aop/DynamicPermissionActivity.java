@@ -13,9 +13,9 @@ import android.widget.TextView;
 
 import com.bryanrady.architecture.BaseActivity;
 import com.bryanrady.architecture.R;
-import com.bryanrady.architecture.aop.annotation.NeedPermission;
-import com.bryanrady.architecture.aop.annotation.PermissionCanceled;
-import com.bryanrady.architecture.aop.annotation.PermissionDenied;
+import com.bryanrady.lib_permission.annotation.NeedPermission;
+import com.bryanrady.lib_permission.annotation.PermissionCanceled;
+import com.bryanrady.lib_permission.annotation.PermissionDenied;
 
 import butterknife.BindView;
 import butterknife.OnClick;

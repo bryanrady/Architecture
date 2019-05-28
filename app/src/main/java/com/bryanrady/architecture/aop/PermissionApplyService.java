@@ -7,9 +7,9 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
-import com.bryanrady.architecture.aop.annotation.NeedPermission;
-import com.bryanrady.architecture.aop.annotation.PermissionCanceled;
-import com.bryanrady.architecture.aop.annotation.PermissionDenied;
+import com.bryanrady.lib_permission.annotation.NeedPermission;
+import com.bryanrady.lib_permission.annotation.PermissionCanceled;
+import com.bryanrady.lib_permission.annotation.PermissionDenied;
 
 
 /**

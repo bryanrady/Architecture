@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 
 import com.bryanrady.architecture.aop.AopUseActivity;
+import com.bryanrady.architecture.plugin.PluginActivity;
+import com.bryanrady.architecture.plugin.load_apk.AliPayActivity;
 import com.bryanrady.architecture.rx.RxJavaOperatorActivity;
 
 import butterknife.BindView;
@@ -19,6 +21,9 @@ import butterknife.OnClick;
  */
 
 public class MainActivity extends BaseActivity {
+
+    @BindView(R.id.btn_plugin)
+    Button btn_plugin;
 
     @BindView(R.id.btn_rxJava)
     Button btn_rxJava;
@@ -77,10 +82,13 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.btn_rxJava,R.id.btn_aop,R.id.btn_dagger2,R.id.btn_eventbus,
+    @OnClick({R.id.btn_plugin,R.id.btn_rxJava,R.id.btn_aop,R.id.btn_dagger2,R.id.btn_eventbus,
             R.id.btn_hermes,R.id.btn_glide,R.id.btn_mvp,R.id.btn_retrofit,})
     void onClick(View view){
         switch (view.getId()){
+            case R.id.btn_plugin:
+                startActivity(PluginActivity.class);
+                break;
             case R.id.btn_rxJava:
                 startActivity(RxJavaOperatorActivity.class);
                 break;

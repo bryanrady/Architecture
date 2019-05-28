@@ -28,6 +28,14 @@
             </intent-filter>
         </activity>
 
+        <!--  插件化 start  -->
+        <activity android:name=".plugin.PluginActivity" />
+        <activity android:name=".plugin.load_apk.AliPayActivity" />
+        <activity android:name=".plugin.load_apk.ProxyActivity" />
+        <service android:name=".plugin.load_apk.ProxyService"/>
+
+        <!--  插件化 end  -->
+
         <!--  RxJava 2.0 start  -->
 
         <activity
