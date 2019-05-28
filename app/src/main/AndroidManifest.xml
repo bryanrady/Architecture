@@ -32,8 +32,8 @@
         <activity android:name=".plugin.PluginActivity" />
         <activity android:name=".plugin.load_apk.AliPayActivity" />
         <activity android:name=".plugin.load_apk.ProxyActivity" />
-        <service android:name=".plugin.load_apk.ProxyService"/>
-
+        <service  android:name=".plugin.load_apk.ProxyService"/>
+        <receiver android:name=".plugin.load_apk.ProxyBroadcastReceiver"/>
         <!--  插件化 end  -->
 
         <!--  RxJava 2.0 start  -->

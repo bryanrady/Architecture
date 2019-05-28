@@ -11,6 +11,8 @@ import android.os.IBinder;
 
 public interface PluginInterfaceService {
 
+    public void attach(Service proxyService);
+
     public void onCreate();
 
     public void onStart(Intent intent, int startId);
@@ -32,7 +34,5 @@ public interface PluginInterfaceService {
     public void onRebind(Intent intent);
 
     public void onTaskRemoved(Intent rootIntent);
-
-    public void attach(Service proxyService);
 
 }

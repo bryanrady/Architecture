@@ -10,6 +10,7 @@ import com.bryanrady.pluginstandard.PluginInterfaceService;
 import java.lang.reflect.Constructor;
 
 /**
+ * 这个服务是真正注册了的服务
  * Created by Administrator on 2018/3/28.
  */
 
@@ -27,11 +28,10 @@ public class ProxyService extends Service {
 
     private void init(Intent intent) {
         mServiceName = intent.getStringExtra("serviceName");
-//        class
         try {
             Class loadClass= PluginManager.getInstance().getDexClassLoader().loadClass(mServiceName);
 
-            Constructor<?> localConstructor =loadClass.getConstructor(new Class[] {});
+            Constructor<?> localConstructor = loadClass.getConstructor(new Class[] {});
             Object instance = localConstructor.newInstance(new Object[] {});
 
             mPluginInterfaceService = (PluginInterfaceService) instance;

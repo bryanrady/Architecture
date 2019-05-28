@@ -1,1 +1,1 @@
-include ':app', ':taopiaopiao', ':pluginstandard', ':lib_permission'
+include ':app', ':plugin_taopiaopiao', ':pluginstandard', ':lib_permission'

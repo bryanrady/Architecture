@@ -9,12 +9,21 @@
     <Button
         android:id="@+id/btn_plugin_load_apk"
         android:layout_below="@+id/toolbar"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:textAllCaps="false"
         android:onClick="load"
-        android:text="加载插件" />
+        android:text="加载插件apk并进行插件通信" />
+
+    <Button
+        android:layout_below="@+id/btn_plugin_load_apk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="给插件发送广播"
+        android:onClick="sendBroadCast"
+        android:gravity="center" />
 
 </RelativeLayout>

@@ -1,8 +1,10 @@
 package com.bryanrady.architecture.plugin.load_apk;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Environment;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -25,7 +27,30 @@ import java.io.InputStream;
 import butterknife.BindView;
 
 /**
- * 模拟支付宝 打开 淘票票 应用  
+ * 模拟支付宝 打开 淘票票 应用
+ *  1.1插件化开发的好处
+ *      宿主和插件分开编译
+ *      并发开发
+ *      动态更新插件
+ *      按需下载模块
+ *      方法数或变量数 爆棚
+ *
+ *  1.2  DynamicLoadApk 提供了 3 种开发方式，让开发者在无需理解其工作原理的情况下快速的集成插件化功能。
+ *          宿主程序与插件完全独立
+ *          宿主程序开放部分接口供插件与之通信
+ *          宿主程序耦合插件的部分业务逻辑
+ *          三种开发模式都可以在 demo 中看到。
+ *
+ *  1.3 核心概念
+ *          (1) 宿主：主 App，可以加载插件，也称 Host。
+ *          (2) 插件：插件 App，被宿主加载的 App，也称 Plugin，可以是跟普通 App 一样的 Apk 文件。
+ *          (3) 组件：指 Android 中的Activity、Service、BroadcastReceiver、ContentProvider，目前 DL 支持Activity、
+ *          Service以及动态的BroadcastReceiver。
+ *          (4) 插件组件：插件中的组件。
+ *          (5) 代理组件：在宿主的 Manifest 中注册，启动插件组件时首先被启动的组件。
+ *              目前包括 DLProxyActivity(代理 Activity)、DLProxyFragmentActivity(代理 FragmentActivity)、
+ *              DLProxyService(代理 Service)。
+ *
  * Created by Administrator on 2019/5/27.
  */
 
@@ -43,6 +68,9 @@ public class AliPayActivity extends BaseActivity {
     @BindView(R.id.tv_toolbar_right_title)
     TextView tvRightTitle;
 
+    public static final String MAIN_TO_PLUGIN_ACTION = "com.bryanrady.architecture.plugin.load_apk.MAIN_TO_PLUGIN_ACTION";
+    public static final String PLUGIN_TO_MAIN_ACTION = "com.bryanrady.taopiaopiao.PLUGIN_TO_MAIN_ACTION";
+
     @Override
     public int bindLayout() {
         return R.layout.activity_load_plugin;
@@ -54,15 +82,24 @@ public class AliPayActivity extends BaseActivity {
     }
 
     private void initToolbar() {
-        tvToolbarTitle.setText("插件化应用");
+        tvToolbarTitle.setText("加载插件apk");
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
     }
 
     @Override
     public void doBusiness(Context context) {
-
+        registerReceiver(mReceiver, new IntentFilter(PLUGIN_TO_MAIN_ACTION));
     }
+
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(PLUGIN_TO_MAIN_ACTION.equals(intent.getAction())){
+                Toast.makeText(context, " 我是宿主，收到你的回复,握手完成!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
 
     public void load(View view) {
         new Thread(new Runnable() {
@@ -71,6 +108,11 @@ public class AliPayActivity extends BaseActivity {
                 copyFileToPrivateDir(AliPayActivity.this);
             }
         }).start();
+    }
+
+    public void sendBroadCast(View view){
+        sendBroadcast(new Intent(MAIN_TO_PLUGIN_ACTION));
+        Toast.makeText(getApplicationContext(), " 我是宿主, 插件插件 ,收到请回答!!", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -104,7 +146,6 @@ public class AliPayActivity extends BaseActivity {
 
             boolean loadIsSuccess = PluginManager.getInstance().loadPluginApk(context);
             if(loadIsSuccess){
-                Log.d("wangqingbin","PluginManager.getInstance().getPackageInfo().activities[0].name=="+PluginManager.getInstance().getPackageInfo().activities[0].name);
                 Intent intent = new Intent(this, ProxyActivity.class);
                 intent.putExtra("activityName", PluginManager.getInstance().getPackageInfo().activities[0].name);
                 startActivity(intent);
@@ -125,18 +166,11 @@ public class AliPayActivity extends BaseActivity {
         }
     }
 
-    public void click(View view) {
-        Log.d("wangqingbin","PluginManager.getInstance().getPackageInfo().activities[0].name=="+PluginManager.getInstance().getPackageInfo().activities[0].name);
-        Intent intent = new Intent(this, ProxyActivity.class);
-        intent.putExtra("activityName", PluginManager.getInstance().getPackageInfo().activities[0].name);
-        startActivity(intent);
-
-//        Intent aIntent = new Intent(this, ProxyActivity.class);
-//        aIntent.putExtra("activityName", PluginManager.getInstance().getPackageInfo().activities[0].name);
-//        startActivity(aIntent);
-//
-//        Intent sIntent = new Intent(this, ProxyService.class);
-//        sIntent.putExtra("serviceName", PluginManager.getInstance().getPackageInfo().services[0].name);
-//        startService(sIntent);
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mReceiver != null){
+            unregisterReceiver(mReceiver);
+        }
     }
 }

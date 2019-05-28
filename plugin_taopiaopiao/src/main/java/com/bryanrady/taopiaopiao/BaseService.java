@@ -13,10 +13,10 @@ import com.bryanrady.pluginstandard.PluginInterfaceService;
  * Created by Administrator on 2018/3/28.
  */
 
-public class TppBaseService extends Service implements PluginInterfaceService {
+public class BaseService extends Service implements PluginInterfaceService {
 
     private static final String TAG = "wangqingbin";
-    private Service mThat;
+    protected Service mThat;
 
     @Nullable
     @Override

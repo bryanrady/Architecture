@@ -1,8 +1,10 @@
 package com.bryanrady.architecture.plugin.load_apk;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -73,6 +75,16 @@ public class ProxyActivity extends Activity {
         Intent m = new Intent(this, ProxyService.class);
         m.putExtra("serviceName", serviceName);
         return super.startService(m);
+    }
+
+    @Override
+    public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter) {
+        IntentFilter newInterFilter = new IntentFilter();
+        //取action的过程
+        for (int i=0;i<filter.countActions();i++) {
+            newInterFilter.addAction(filter.getAction(i));
+        }
+        return super.registerReceiver(new ProxyBroadcastReceiver(receiver.getClass().getName(),this),newInterFilter);
     }
 
     @Override

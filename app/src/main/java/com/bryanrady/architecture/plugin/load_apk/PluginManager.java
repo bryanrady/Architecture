@@ -48,7 +48,6 @@ public class PluginManager {
 
         PackageManager packageManager = context.getPackageManager();
         mPackageInfo = packageManager.getPackageArchiveInfo(dexPath,PackageManager.GET_ACTIVITIES);
-        Log.d("wangqingbin","mPackageInfo=="+mPackageInfo);
 
         File dexOutFile = context.getDir("dex", Context.MODE_PRIVATE);
         mDexClassLoader = new DexClassLoader(dexPath,dexOutFile.getAbsolutePath(),null,context.getClassLoader());

@@ -5,8 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/Architecture.iml" filepath="$PROJECT_DIR$/Architecture.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib_permission/lib_permission.iml" filepath="$PROJECT_DIR$/lib_permission/lib_permission.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugin_taopiaopiao/taopiaopiao.iml" filepath="$PROJECT_DIR$/plugin_taopiaopiao/taopiaopiao.iml" />
       <module fileurl="file://$PROJECT_DIR$/pluginstandard/pluginstandard.iml" filepath="$PROJECT_DIR$/pluginstandard/pluginstandard.iml" />
-      <module fileurl="file://$PROJECT_DIR$/taopiaopiao/taopiaopiao.iml" filepath="$PROJECT_DIR$/taopiaopiao/taopiaopiao.iml" />
     </modules>
   </component>
 </project>

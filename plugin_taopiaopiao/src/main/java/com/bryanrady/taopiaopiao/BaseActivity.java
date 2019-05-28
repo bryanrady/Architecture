@@ -1,8 +1,10 @@
 package com.bryanrady.taopiaopiao;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -18,7 +20,7 @@ import com.bryanrady.pluginstandard.PluginInterfaceActivity;
  * Created by Administrator on 2019/5/27.
  */
 
-public class TppBaseActivity extends Activity implements PluginInterfaceActivity {
+public class BaseActivity extends Activity implements PluginInterfaceActivity {
 
     protected Activity mThat;
 
@@ -65,15 +67,6 @@ public class TppBaseActivity extends Activity implements PluginInterfaceActivity
     }
 
     @Override
-    public void setContentView(View view) {
-        if (mThat != null){
-            mThat.setContentView(view);
-        }else{
-            super.setContentView(view);
-        }
-    }
-
-    @Override
     public void setContentView(int layoutResID) {
         if (mThat != null){
             mThat.setContentView(layoutResID);
@@ -83,63 +76,11 @@ public class TppBaseActivity extends Activity implements PluginInterfaceActivity
     }
 
     @Override
-    public void setContentView(View view, ViewGroup.LayoutParams params) {
-        if (mThat != null){
-            mThat.setContentView(view, params);
-        }else{
-            super.setContentView(view, params);
-        }
-    }
-
-    @NonNull
-    @Override
-    public LayoutInflater getLayoutInflater() {
-        if (mThat != null){
-            mThat.getLayoutInflater();
-        }
-        return super.getLayoutInflater();
-    }
-
-    @Override
     public <T extends View> T findViewById(int id) {
         if (mThat != null){
-            mThat.findViewById(id);
+            return mThat.findViewById(id);
         }
         return super.findViewById(id);
-    }
-
-    @Override
-    public void startActivity(Intent intent) {
-        if (mThat != null){
-            //        ProxyActivity --->className
-            Intent m = new Intent();
-            m.putExtra("activityName", intent.getComponent().getClassName());
-            Log.d("wangqingbin","activityName intent.getComponent().getClassName()=="+intent.getComponent().getClassName());
-            mThat.startActivity(m);
-        }else{
-            super.startActivity(intent);
-        }
-
-    }
-
-    @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        if (mThat != null){
-            mThat.startActivityForResult(intent, requestCode);
-        }else{
-            super.startActivityForResult(intent, requestCode);
-        }
-    }
-
-    @Override
-    public ComponentName startService(Intent service) {
-        if (mThat != null){
-            Intent m = new Intent();
-            m.putExtra("serviceName", service.getComponent().getClassName());
-            Log.d("wangqingbin","serviceName service.getComponent().getClassName()=="+service.getComponent().getClassName());
-            return mThat.startService(m);
-        }
-        return super.startService(service);
     }
 
     @Override
@@ -151,26 +92,45 @@ public class TppBaseActivity extends Activity implements PluginInterfaceActivity
     }
 
     @Override
-    public ClassLoader getClassLoader() {
+    public void startActivity(Intent intent) {
         if (mThat != null){
-            return mThat.getClassLoader();
+            //        ProxyActivity --->className
+            Intent m = new Intent();
+            m.putExtra("activityName", intent.getComponent().getClassName());
+            Log.d("wangqingbin","activityName =="+intent.getComponent().getClassName());
+            mThat.startActivity(m);
+        }else{
+            super.startActivity(intent);
         }
-        return super.getClassLoader();
+
     }
 
     @Override
-    public Window getWindow() {
+    public ComponentName startService(Intent service) {
         if (mThat != null){
-            return mThat.getWindow();
+            Intent m = new Intent();
+            m.putExtra("serviceName", service.getComponent().getClassName());
+            Log.d("wangqingbin","serviceName =="+service.getComponent().getClassName());
+            return mThat.startService(m);
         }
-        return super.getWindow();
+        return super.startService(service);
     }
 
     @Override
-    public WindowManager getWindowManager() {
+    public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter) {
         if (mThat != null){
-            return mThat.getWindowManager();
+            return mThat.registerReceiver(receiver, filter);
         }
-        return super.getWindowManager();
+        return super.registerReceiver(receiver, filter);
     }
+
+    @Override
+    public void sendBroadcast(Intent intent) {
+        if (mThat != null){
+            mThat.sendBroadcast(intent);
+        }else{
+            super.sendBroadcast(intent);
+        }
+    }
+
 }
