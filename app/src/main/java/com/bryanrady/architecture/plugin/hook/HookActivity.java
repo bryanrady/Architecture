@@ -1,4 +1,4 @@
-package com.bryanrady.architecture.plugin;
+package com.bryanrady.architecture.plugin.hook;
 
 import android.content.Context;
 import android.support.v7.widget.Toolbar;
@@ -9,30 +9,24 @@ import android.widget.TextView;
 
 import com.bryanrady.architecture.BaseActivity;
 import com.bryanrady.architecture.R;
-import com.bryanrady.architecture.plugin.hook.HookActivity;
+import com.bryanrady.architecture.plugin.hook.login.HookLoginMainActivity;
 import com.bryanrady.architecture.plugin.load_apk.AliPayActivity;
 import com.bryanrady.architecture.rx.operator.ConditionOperatorActivity;
-import com.bryanrady.architecture.rx.operator.CreateOperatorActivity;
 import com.bryanrady.architecture.rx.operator.ExceptionOperatorActivity;
 import com.bryanrady.architecture.rx.operator.FilterOperatorActivity;
 import com.bryanrady.architecture.rx.operator.MergeOperatorActivity;
-import com.bryanrady.architecture.rx.operator.TransferOperatorActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * https://www.jianshu.com/p/b30de498c3cc
- * Created by wangqingbin on 2019/1/9.
+ * Created by Administrator on 2019/5/29.
  */
 
-public class PluginActivity extends BaseActivity {
+public class HookActivity extends BaseActivity{
 
-    @BindView(R.id.btn_plugin_load_apk)
-    Button btn_plugin_load_apk;
-
-    @BindView(R.id.btn_plugin_hook)
-    Button btn_plugin_hook;
+    @BindView(R.id.btn_plugin_hook_login)
+    Button btn_plugin_hook_login;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -48,7 +42,7 @@ public class PluginActivity extends BaseActivity {
 
     @Override
     public int bindLayout() {
-        return R.layout.activity_plugin;
+        return R.layout.activity_plugin_hook;
     }
 
     @Override
@@ -58,7 +52,7 @@ public class PluginActivity extends BaseActivity {
 
     private void initToolbar() {
         llBack.setVisibility(View.VISIBLE);
-        tvToolbarTitle.setText("插件化应用");
+        tvToolbarTitle.setText("Hook钩子函数应用");
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
     }
@@ -68,17 +62,14 @@ public class PluginActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.ll_toolbar_back,R.id.btn_plugin_load_apk,R.id.btn_plugin_hook})
+    @OnClick({R.id.ll_toolbar_back,R.id.btn_plugin_hook_login})
     void onClick(View view){
         switch (view.getId()){
             case R.id.ll_toolbar_back:
                 defaultFinish();
                 break;
-            case R.id.btn_plugin_load_apk:
-                startActivity(AliPayActivity.class);
-                break;
-            case R.id.btn_plugin_hook:
-                startActivity(HookActivity.class);
+            case R.id.btn_plugin_hook_login:
+                startActivity(HookLoginMainActivity.class);
                 break;
         }
     }

@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import com.bryanrady.architecture.plugin.hook.login.HookUtil;
+
 /**
  * Created by Administrator on 2019/1/3.
  */
@@ -21,6 +23,8 @@ public class FrameApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        HookUtil hookUtil = new HookUtil();
+        hookUtil.init(this);
     }
 
 

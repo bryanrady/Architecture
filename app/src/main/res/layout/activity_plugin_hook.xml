@@ -7,7 +7,7 @@
     <include layout="@layout/toolbar_layout"/>
 
     <Button
-        android:id="@+id/btn_plugin_load_apk"
+        android:id="@+id/btn_plugin_hook_login"
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,18 +16,6 @@
         android:layout_marginRight="20dp"
         android:layout_centerHorizontal="true"
         android:textAllCaps="false"
-        android:text="插件化加载apk" />
-
-    <Button
-        android:id="@+id/btn_plugin_hook"
-        android:layout_below="@+id/btn_plugin_load_apk"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_centerHorizontal="true"
-        android:textAllCaps="false"
-        android:text="Hook钩子函数" />
+        android:text="Hook AMS服务实现大型登录架构" />
 
 </RelativeLayout>

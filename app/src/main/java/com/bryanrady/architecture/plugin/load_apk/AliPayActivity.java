@@ -73,7 +73,7 @@ public class AliPayActivity extends BaseActivity {
 
     @Override
     public int bindLayout() {
-        return R.layout.activity_load_plugin;
+        return R.layout.activity_plugin_load;
     }
 
     @Override

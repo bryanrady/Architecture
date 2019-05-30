@@ -48,15 +48,7 @@ public class ProxyActivity extends Activity {
             bundle.putInt("age",25);
             mPluginInterfaceActivity.onCreate(bundle);
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
