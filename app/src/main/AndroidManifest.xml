@@ -31,14 +31,18 @@
         <!--  插件化 start  -->
 
         <activity android:name=".plugin.PluginActivity" />
-        <activity android:name=".plugin.load_apk.AliPayActivity" />
-        <activity android:name=".plugin.load_apk.ProxyActivity" />
-        <service  android:name=".plugin.load_apk.ProxyService"/>
-        <receiver android:name=".plugin.load_apk.ProxyBroadcastReceiver"/>
+        <activity android:name=".plugin.insert.AliPayActivity" />
+        <activity android:name=".plugin.insert.ProxyActivity" />
+        <service  android:name=".plugin.insert.ProxyService"/>
+        <receiver android:name=".plugin.insert.ProxyBroadcastReceiver"/>
 
         <activity android:name=".plugin.hook.HookActivity" />
-        <activity android:name=".plugin.hook.login.HookLoginMainActivity" />
-        <activity android:name=".plugin.hook.login.HookLoginProxyActivity" />
+        <activity android:name=".plugin.hook.login.LoginMainActivity" />
+        <activity android:name=".plugin.hook.login.LoginProxyActivity" />
+        <activity android:name=".plugin.hook.clipboard.ClipboardManagerActivity" />
+
+        <activity android:name=".plugin.binder.BinderClientActivity" />
+
         <!--  插件化 end  -->
 
         <!--  RxJava 2.0 start  -->

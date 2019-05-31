@@ -9,14 +9,9 @@ import android.widget.TextView;
 
 import com.bryanrady.architecture.BaseActivity;
 import com.bryanrady.architecture.R;
+import com.bryanrady.architecture.plugin.binder.BinderClientActivity;
 import com.bryanrady.architecture.plugin.hook.HookActivity;
-import com.bryanrady.architecture.plugin.load_apk.AliPayActivity;
-import com.bryanrady.architecture.rx.operator.ConditionOperatorActivity;
-import com.bryanrady.architecture.rx.operator.CreateOperatorActivity;
-import com.bryanrady.architecture.rx.operator.ExceptionOperatorActivity;
-import com.bryanrady.architecture.rx.operator.FilterOperatorActivity;
-import com.bryanrady.architecture.rx.operator.MergeOperatorActivity;
-import com.bryanrady.architecture.rx.operator.TransferOperatorActivity;
+import com.bryanrady.architecture.plugin.insert.AliPayActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,11 +23,14 @@ import butterknife.OnClick;
 
 public class PluginActivity extends BaseActivity {
 
-    @BindView(R.id.btn_plugin_load_apk)
-    Button btn_plugin_load_apk;
+    @BindView(R.id.btn_plugin_insert)
+    Button btn_plugin_insert;
 
     @BindView(R.id.btn_plugin_hook)
     Button btn_plugin_hook;
+
+    @BindView(R.id.btn_plugin_binder)
+    Button btn_plugin_binder;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -68,17 +66,20 @@ public class PluginActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.ll_toolbar_back,R.id.btn_plugin_load_apk,R.id.btn_plugin_hook})
+    @OnClick({R.id.ll_toolbar_back,R.id.btn_plugin_insert,R.id.btn_plugin_hook,R.id.btn_plugin_binder})
     void onClick(View view){
         switch (view.getId()){
             case R.id.ll_toolbar_back:
                 defaultFinish();
                 break;
-            case R.id.btn_plugin_load_apk:
+            case R.id.btn_plugin_insert:
                 startActivity(AliPayActivity.class);
                 break;
             case R.id.btn_plugin_hook:
                 startActivity(HookActivity.class);
+                break;
+            case R.id.btn_plugin_binder:
+                startActivity(BinderClientActivity.class);
                 break;
         }
     }

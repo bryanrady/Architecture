@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/lib_permission" />
             <option value="$PROJECT_DIR$/plugin_taopiaopiao" />
             <option value="$PROJECT_DIR$/pluginstandard" />
+            <option value="$PROJECT_DIR$/remoteprocess" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

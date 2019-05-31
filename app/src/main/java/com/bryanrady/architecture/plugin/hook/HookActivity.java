@@ -9,12 +9,8 @@ import android.widget.TextView;
 
 import com.bryanrady.architecture.BaseActivity;
 import com.bryanrady.architecture.R;
-import com.bryanrady.architecture.plugin.hook.login.HookLoginMainActivity;
-import com.bryanrady.architecture.plugin.load_apk.AliPayActivity;
-import com.bryanrady.architecture.rx.operator.ConditionOperatorActivity;
-import com.bryanrady.architecture.rx.operator.ExceptionOperatorActivity;
-import com.bryanrady.architecture.rx.operator.FilterOperatorActivity;
-import com.bryanrady.architecture.rx.operator.MergeOperatorActivity;
+import com.bryanrady.architecture.plugin.hook.clipboard.ClipboardManagerActivity;
+import com.bryanrady.architecture.plugin.hook.login.LoginMainActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -27,6 +23,9 @@ public class HookActivity extends BaseActivity{
 
     @BindView(R.id.btn_plugin_hook_login)
     Button btn_plugin_hook_login;
+
+    @BindView(R.id.btn_plugin_hook_clipboard_service)
+    Button btn_plugin_hook_clipboard_service;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -62,14 +61,17 @@ public class HookActivity extends BaseActivity{
 
     }
 
-    @OnClick({R.id.ll_toolbar_back,R.id.btn_plugin_hook_login})
+    @OnClick({R.id.ll_toolbar_back,R.id.btn_plugin_hook_login,R.id.btn_plugin_hook_clipboard_service})
     void onClick(View view){
         switch (view.getId()){
             case R.id.ll_toolbar_back:
                 defaultFinish();
                 break;
             case R.id.btn_plugin_hook_login:
-                startActivity(HookLoginMainActivity.class);
+                startActivity(LoginMainActivity.class);
+                break;
+            case R.id.btn_plugin_hook_clipboard_service:
+                startActivity(ClipboardManagerActivity.class);
                 break;
         }
     }

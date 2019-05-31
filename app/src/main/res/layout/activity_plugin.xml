@@ -7,7 +7,7 @@
     <include layout="@layout/toolbar_layout"/>
 
     <Button
-        android:id="@+id/btn_plugin_load_apk"
+        android:id="@+id/btn_plugin_insert"
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,11 +16,11 @@
         android:layout_marginRight="20dp"
         android:layout_centerHorizontal="true"
         android:textAllCaps="false"
-        android:text="插件化加载apk" />
+        android:text="插桩技术加载插件apk" />
 
     <Button
         android:id="@+id/btn_plugin_hook"
-        android:layout_below="@+id/btn_plugin_load_apk"
+        android:layout_below="@+id/btn_plugin_insert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -29,5 +29,17 @@
         android:layout_centerHorizontal="true"
         android:textAllCaps="false"
         android:text="Hook钩子函数" />
+
+    <Button
+        android:id="@+id/btn_plugin_binder"
+        android:layout_below="@+id/btn_plugin_hook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+        android:text="Binder进程间通信" />
 
 </RelativeLayout>

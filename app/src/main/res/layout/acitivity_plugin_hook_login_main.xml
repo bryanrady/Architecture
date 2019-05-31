@@ -8,11 +8,11 @@
     <include layout="@layout/toolbar_layout"/>
 
     <Button
+        android:id="@+id/jump1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="跳转界面1"
-        android:onClick="jump1" />
+        android:text="跳转界面1" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

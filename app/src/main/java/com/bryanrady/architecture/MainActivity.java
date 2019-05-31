@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.bryanrady.architecture.aop.AopUseActivity;
 import com.bryanrady.architecture.plugin.PluginActivity;
-import com.bryanrady.architecture.plugin.load_apk.AliPayActivity;
 import com.bryanrady.architecture.rx.RxJavaOperatorActivity;
 
 import butterknife.BindView;
