@@ -126,7 +126,7 @@ public class HookUtil {
                         index = i;
                     }
                 }
-                if(originalIntent != null){
+                if(originalIntent != null && originalIntent.getComponent() != null){
                     if(onlyForActivity(originalIntent)){
                         //目的  ---在载入activity的时候将intent还原为最开始的意图
                         Intent proxyIntent = new Intent();
@@ -202,8 +202,9 @@ public class HookUtil {
                     Intent proxyIntent = (Intent) intentField.get(obj);
                     if(proxyIntent != null){
                         Intent originalIntent = proxyIntent.getParcelableExtra("originalIntent");
-                        if(originalIntent != null){
+                        if(originalIntent != null  && originalIntent.getComponent() != null){
                             if(onlyForActivity(originalIntent)){
+                                //为了绕开AMS检查
                                 handleLaunchActivity(mContext,proxyIntent,originalIntent);
                             }
                         }
@@ -240,7 +241,11 @@ public class HookUtil {
         if(LoginLoginActivity.class.getName().equals(className)
                 || LoginFirstActivity.class.getName().equals(className)
                 || LoginSecondActivity.class.getName().equals(className)
-                || LoginThirdActivity.class.getName().equals(className)){
+                || LoginThirdActivity.class.getName().equals(className)
+                ||"com.bryanrady.plugin_load_apk.LoadFirstActivity".equals(className)
+                ||"com.bryanrady.plugin_load_apk.LoadSecondActivity".equals(className)
+                ||"com.bryanrady.plugin_load_apk.LoadThirdActivity".equals(className)
+                ){
             return true;
         }
         return false;

@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/lib_permission" />
+            <option value="$PROJECT_DIR$/plugin_load_apk" />
             <option value="$PROJECT_DIR$/plugin_taopiaopiao" />
             <option value="$PROJECT_DIR$/pluginstandard" />
             <option value="$PROJECT_DIR$/remoteprocess" />

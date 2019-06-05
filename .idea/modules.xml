@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Architecture.iml" filepath="$PROJECT_DIR$/Architecture.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib_permission/lib_permission.iml" filepath="$PROJECT_DIR$/lib_permission/lib_permission.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugin_load_apk/plugin_load_apk.iml" filepath="$PROJECT_DIR$/plugin_load_apk/plugin_load_apk.iml" />
       <module fileurl="file://$PROJECT_DIR$/plugin_taopiaopiao/plugin_taopiaopiao.iml" filepath="$PROJECT_DIR$/plugin_taopiaopiao/plugin_taopiaopiao.iml" />
       <module fileurl="file://$PROJECT_DIR$/pluginstandard/pluginstandard.iml" filepath="$PROJECT_DIR$/pluginstandard/pluginstandard.iml" />
       <module fileurl="file://$PROJECT_DIR$/remoteprocess/remoteprocess.iml" filepath="$PROJECT_DIR$/remoteprocess/remoteprocess.iml" />

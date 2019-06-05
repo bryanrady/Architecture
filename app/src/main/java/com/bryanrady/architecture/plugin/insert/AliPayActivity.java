@@ -86,6 +86,8 @@ public class AliPayActivity extends BaseActivity {
         setSupportActionBar(mToolbar);
     }
 
+    private boolean loadIsSuccess;
+
     @Override
     public void doBusiness(Context context) {
         registerReceiver(mReceiver, new IntentFilter(PLUGIN_TO_MAIN_ACTION));
@@ -110,8 +112,13 @@ public class AliPayActivity extends BaseActivity {
     }
 
     public void sendBroadCast(View view){
-        sendBroadcast(new Intent(MAIN_TO_PLUGIN_ACTION));
-        Toast.makeText(getApplicationContext(), " 我是宿主, 插件插件 ,收到请回答!!", Toast.LENGTH_SHORT).show();
+        if(loadIsSuccess){
+            sendBroadcast(new Intent(MAIN_TO_PLUGIN_ACTION));
+            Toast.makeText(getApplicationContext(), " 我是宿主, 插件插件 ,收到请回答!!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), " 请先加载插件apk", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     /**
@@ -143,7 +150,7 @@ public class AliPayActivity extends BaseActivity {
                 fos.write(buffer,0, len);
             }
 
-            boolean loadIsSuccess = PluginManager.getInstance().loadPluginApk(context);
+            loadIsSuccess = PluginManager.getInstance().loadPluginApk(context);
             if(loadIsSuccess){
                 Intent intent = new Intent(this, ProxyActivity.class);
                 intent.putExtra("activityName", PluginManager.getInstance().getPackageInfo().activities[0].name);

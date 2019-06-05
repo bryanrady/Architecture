@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.bryanrady.remoteprocess"
+        applicationId "com.bryanrady.plugin_load_apk"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1

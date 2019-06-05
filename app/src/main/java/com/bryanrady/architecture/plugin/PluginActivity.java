@@ -12,6 +12,7 @@ import com.bryanrady.architecture.R;
 import com.bryanrady.architecture.plugin.binder.BinderClientActivity;
 import com.bryanrady.architecture.plugin.hook.HookActivity;
 import com.bryanrady.architecture.plugin.insert.AliPayActivity;
+import com.bryanrady.architecture.plugin.load_apk.LoadMainActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,6 +32,9 @@ public class PluginActivity extends BaseActivity {
 
     @BindView(R.id.btn_plugin_binder)
     Button btn_plugin_binder;
+
+    @BindView(R.id.btn_plugin_load_apk)
+    Button btn_plugin_load_apk;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -66,7 +70,7 @@ public class PluginActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.ll_toolbar_back,R.id.btn_plugin_insert,R.id.btn_plugin_hook,R.id.btn_plugin_binder})
+    @OnClick({R.id.ll_toolbar_back,R.id.btn_plugin_insert,R.id.btn_plugin_hook,R.id.btn_plugin_binder,R.id.btn_plugin_load_apk})
     void onClick(View view){
         switch (view.getId()){
             case R.id.ll_toolbar_back:
@@ -80,6 +84,9 @@ public class PluginActivity extends BaseActivity {
                 break;
             case R.id.btn_plugin_binder:
                 startActivity(BinderClientActivity.class);
+                break;
+            case R.id.btn_plugin_load_apk:
+                startActivity(LoadMainActivity.class);
                 break;
         }
     }

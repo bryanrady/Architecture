@@ -42,4 +42,16 @@
         android:textAllCaps="false"
         android:text="Binder进程间通信" />
 
+    <Button
+        android:id="@+id/btn_plugin_load_apk"
+        android:layout_below="@+id/btn_plugin_binder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+        android:text="加载apk实现集中式登录" />
+
 </RelativeLayout>
