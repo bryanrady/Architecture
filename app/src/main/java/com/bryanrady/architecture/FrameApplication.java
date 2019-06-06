@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Environment;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 
 import com.bryanrady.architecture.plugin.hook.HookUtil;
@@ -26,6 +27,12 @@ public class FrameApplication extends Application {
 
     private static final String TAG = "FrameApplication";
 
+    public static FrameApplication INSTANCE = null;
+
+    public static FrameApplication getInstance(){
+        return INSTANCE;
+    }
+
     private AssetManager mAssetManager;
     private Resources mResources;
     private Resources.Theme mTheme;
@@ -39,17 +46,28 @@ public class FrameApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        INSTANCE = this;
+
         HookUtil hookUtil = new HookUtil();
-        hookUtil.hookStartActivity(this);
-        hookUtil.hookMHHandleMessage(this);
         hookUtil.hookClipSystemService(this);
 
+        //1.hook实现集中式登录
+        hookUtil.hookIActivityManager(this);
+        hookUtil.hookMHHandleMessage(this);
+
+
+        //2.hook + 融合dexElements数组实现集中式登录
         String apkPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/plugin/dexelements.apk";
         String apkCachePath = getCacheDir().getAbsolutePath();
-        //1.合并class
-        injectPluginClass(apkPath, apkCachePath);
-        //2.合并resource
-        loadPluginResources(apkPath);
+        //融合class
+    //    injectPluginClass(apkPath, apkCachePath);
+        //融合resource
+    //    loadPluginResources(apkPath);
+
+        //3.hook + 构建LoadedApk添加到map集合中实现集中式登录
+        String apkPath2 = Environment.getExternalStorageDirectory().getAbsolutePath() + "/plugin/loadedapk.apk";
+        hookUtil.putPluginLoadedApkToArrayMap(this, apkPath2);
+
     }
 
     /**

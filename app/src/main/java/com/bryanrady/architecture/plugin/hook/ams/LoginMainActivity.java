@@ -48,7 +48,7 @@ public class LoginMainActivity extends BaseActivity {
     }
 
     private void initToolbar() {
-        tvToolbarTitle.setText("Hook钩子函数应用——登录架构");
+        tvToolbarTitle.setText("绕开AMS检查实现集中式登录");
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
     }
@@ -67,6 +67,7 @@ public class LoginMainActivity extends BaseActivity {
         Intent intent = new Intent(this, LoginSecondActivity.class);
         startActivity(intent);
     }
+
     public void jump3(View view) {
         Intent intent = new Intent(this,LoginThirdActivity.class);
         startActivity(intent);

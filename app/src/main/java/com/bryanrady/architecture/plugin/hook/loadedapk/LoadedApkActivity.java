@@ -1,4 +1,4 @@
-package com.bryanrady.architecture.plugin.hook.dex_elements;
+package com.bryanrady.architecture.plugin.hook.loadedapk;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -19,7 +19,7 @@ import butterknife.BindView;
  * Created by Administrator on 2019/5/29.
  */
 
-public class DexElementsActivity extends BaseActivity {
+public class LoadedApkActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -46,7 +46,7 @@ public class DexElementsActivity extends BaseActivity {
     }
 
     private void initToolbar() {
-        tvToolbarTitle.setText("融合宿主和插件的dexElements数组实现集中式登录");
+        tvToolbarTitle.setText("LoadedApk实现不同的Classloader实现集中式登录");
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
     }
@@ -58,21 +58,21 @@ public class DexElementsActivity extends BaseActivity {
 
     public void jump1(View view) {
         Intent intent = new Intent();
-        intent.setComponent(new ComponentName("com.bryanrady.dexelements",
-                "com.bryanrady.dexelements.DexFirstActivity"));
+        intent.setComponent(new ComponentName("com.bryanrady.loadedapk",
+                "com.bryanrady.loadedapk.LoadedFirstActivity"));
         startActivity(intent);
     }
     public void jump2(View view) {
         Intent intent = new Intent();
-        intent.setComponent(new ComponentName("com.bryanrady.dexelements",
-                "com.bryanrady.dexelements.DexSecondActivity"));
+        intent.setComponent(new ComponentName("com.bryanrady.loadedapk",
+                "com.bryanrady.loadedapk.LoadedSecondActivity"));
         startActivity(intent);
     }
 
     public void jump3(View view) {
         Intent intent = new Intent();
-        intent.setComponent(new ComponentName("com.bryanrady.dexelements",
-                "com.bryanrady.dexelements.DexThirdActivity"));
+        intent.setComponent(new ComponentName("com.bryanrady.loadedapk",
+                "com.bryanrady.loadedapk.LoadedThirdActivity"));
         startActivity(intent);
     }
 

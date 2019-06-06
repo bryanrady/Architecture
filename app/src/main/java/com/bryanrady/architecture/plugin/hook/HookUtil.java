@@ -5,19 +5,29 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.util.ArrayMap;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bryanrady.architecture.FrameApplication;
 import com.bryanrady.architecture.plugin.hook.ams.LoginFirstActivity;
 import com.bryanrady.architecture.plugin.hook.ams.LoginLoginActivity;
 import com.bryanrady.architecture.plugin.hook.ams.LoginProxyActivity;
 import com.bryanrady.architecture.plugin.hook.ams.LoginSecondActivity;
 import com.bryanrady.architecture.plugin.hook.ams.LoginThirdActivity;
+import com.bryanrady.architecture.plugin.hook.loadedapk.FileUtil;
+import com.bryanrady.architecture.plugin.hook.loadedapk.LoadedPluginClassLoader;
 
+import java.io.File;
+import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -65,7 +75,7 @@ public class HookUtil {
     /**
      * 这一步相当于伪装的过程 把真实的intent进行伪装
      */
-    public void hookStartActivity(Context context) {
+    public void hookIActivityManager(Context context) {
         try {
             Class activityManagerNativeClass = Class.forName("android.app.ActivityManagerNative");
             Field gDefaultField = activityManagerNativeClass.getDeclaredField("gDefault");
@@ -100,18 +110,15 @@ public class HookUtil {
     //动态代理方式
     class IActivityManagerHandler implements InvocationHandler{
         private Context mContext;
-        private Object mRealIActivityManager;
+        private Object mIActivityManager;
 
-        public IActivityManagerHandler(Context context,Object realIActivityManager){
+        public IActivityManagerHandler(Context context,Object iActivityManager){
             this.mContext = context;
-            this.mRealIActivityManager = realIActivityManager;
+            this.mIActivityManager = iActivityManager;
         }
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-
-            Log.d("wangqingbin","invoke  " + method.getName());
-
             //拦截所有的startActivity方法
             if ("startActivity".equals(method.getName())) {
                 Log.d("wangqingbin","-----------------startActivity--------------------------");
@@ -137,7 +144,7 @@ public class HookUtil {
                     }
                 }
             }
-            return method.invoke(mRealIActivityManager, args);
+            return method.invoke(mIActivityManager, args);
         }
     }
 
@@ -202,10 +209,10 @@ public class HookUtil {
                     Intent proxyIntent = (Intent) intentField.get(obj);
                     if(proxyIntent != null){
                         Intent originalIntent = proxyIntent.getParcelableExtra("originalIntent");
-                        if(originalIntent != null  && originalIntent.getComponent() != null){
+                        if(originalIntent != null && originalIntent.getComponent() != null){
                             if(onlyForActivity(originalIntent)){
                                 //为了绕开AMS检查
-                                handleLaunchActivity(mContext,proxyIntent,originalIntent);
+                                handleLaunchActivity(mContext,obj,proxyIntent,originalIntent);
                             }
                         }
                     }
@@ -218,16 +225,85 @@ public class HookUtil {
             return true;
         }
 
-        private void handleLaunchActivity(Context context,Intent proxyIntent,Intent originalIntent) {
+        private void handleLaunchActivity(Context context,Object obj,Intent proxyIntent,Intent originalIntent) {
             //然后就在这里做集中式登录  还原 把原有的意图  放到proxyIntent
             SharedPreferences share = context.getSharedPreferences("wangqingbin", Context.MODE_PRIVATE);
             if (share.getBoolean("login",false)) {
                 proxyIntent.setComponent(originalIntent.getComponent());
             }else {
-                ComponentName componentName = new ComponentName(context,LoginLoginActivity.class);
+                ComponentName componentName = new ComponentName(context, LoginLoginActivity.class);
                 proxyIntent.putExtra("extraIntent", originalIntent.getComponent().getClassName());
                 proxyIntent.setComponent(componentName);
             }
+
+            if(onlyForActivity2(originalIntent)){
+                try {
+                    Field activityInfoField = obj.getClass().getDeclaredField("activityInfo");
+                    activityInfoField.setAccessible(true);
+                    ActivityInfo activityInfo= (ActivityInfo) activityInfoField.get(obj);
+                    if(originalIntent.getPackage() == null){
+                        activityInfo.applicationInfo.packageName = originalIntent.getComponent().getPackageName();
+                    }else{
+                        activityInfo.applicationInfo.packageName = originalIntent.getPackage();
+                    }
+//                activityInfo.applicationInfo.packageName = originalIntent.getPackage() == null
+//                        ? originalIntent.getComponent().getPackageName()
+//                        : originalIntent.getPackage();
+
+                    hookIPackageManager();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+    public void hookIPackageManager() {
+        try {
+            Class activityThreadClass = Class.forName("android.app.ActivityThread");
+            Method currentActivityThreadMethod = activityThreadClass.getDeclaredMethod("currentActivityThread");
+            Object sCurrentActivityThread = currentActivityThreadMethod.invoke(null);
+
+            // 获取ActivityThread里面原始的 sPackageManager
+            Field sPackageManagerField = activityThreadClass.getDeclaredField("sPackageManager");
+            sPackageManagerField.setAccessible(true);
+            Object sPackageManager = sPackageManagerField.get(sCurrentActivityThread);
+
+            Class iPackageManagerClass = Class.forName("android.content.pm.IPackageManager");
+
+            // 准备好代理对象, 用来替换原始的对象
+            IPackageManagerHandler iPackageManagerHandler = new IPackageManagerHandler(sPackageManager);
+            Object proxyIPackageManager = Proxy.newProxyInstance(
+                    iPackageManagerClass.getClassLoader(),
+                    new Class[]{iPackageManagerClass},
+                    iPackageManagerHandler);
+
+            sPackageManagerField.set(sCurrentActivityThread,proxyIPackageManager);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    class IPackageManagerHandler implements InvocationHandler{
+
+        Object mPackageManager;
+
+        public IPackageManagerHandler(Object iPackageManager){
+            mPackageManager = iPackageManager;
+        }
+
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            //这里要进行拦截 如果不拦截的话 返回的还是宿主的包名
+            if (method.getName().equals("getPackageInfo")) {
+                Log.d("wangqingbin","-----------------getPackageInfo()--------------------------");
+            //    return new PackageInfo();
+                return null;
+            }
+            return method.invoke(mPackageManager,args);
         }
     }
 
@@ -242,14 +318,137 @@ public class HookUtil {
                 || LoginFirstActivity.class.getName().equals(className)
                 || LoginSecondActivity.class.getName().equals(className)
                 || LoginThirdActivity.class.getName().equals(className)
-                ||"com.bryanrady.dexelements.LoadFirstActivity".equals(className)
-                ||"com.bryanrady.dexelements.LoadSecondActivity".equals(className)
-                ||"com.bryanrady.dexelements.LoadThirdActivity".equals(className)
-                ){
+                ||"com.bryanrady.dexelements.DexFirstActivity".equals(className)
+                ||"com.bryanrady.dexelements.DexSecondActivity".equals(className)
+                ||"com.bryanrady.dexelements.DexThirdActivity".equals(className)
+                ||"com.bryanrady.loadedapk.LoadedFirstActivity".equals(className)
+                ||"com.bryanrady.loadedapk.LoadedSecondActivity".equals(className)
+                ||"com.bryanrady.loadedapk.LoadedThirdActivity".equals(className)
+                )
+        {
             return true;
         }
         return false;
     }
+
+    private boolean onlyForActivity2(Intent originalIntent){
+        String className = originalIntent.getComponent().getClassName();
+        if("com.bryanrady.loadedapk.LoadedFirstActivity".equals(className)
+                ||"com.bryanrady.loadedapk.LoadedSecondActivity".equals(className)
+                ||"com.bryanrady.loadedapk.LoadedThirdActivity".equals(className)
+                )
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 将插件apk的LoadedApk添加到map集合中
+     * @param context
+     * @param apkPath
+     */
+    public void putPluginLoadedApkToArrayMap(Context context,String apkPath){
+        try {
+            //1.得到系统的ActivityThread对象
+            //通过ActivityThread的内部方法currentActivityThread（）返回
+            Class activityThreadClass = Class.forName("android.app.ActivityThread");
+            Method currentActivityThreadMethod = activityThreadClass.getDeclaredMethod("currentActivityThread");
+            Object sCurrentActivityThread = currentActivityThreadMethod.invoke(null);
+
+            //    final ArrayMap<String, WeakReference<LoadedApk>> mPackages = new ArrayMap<String, WeakReference<LoadedApk>>();
+            //2.得到ActivityThread里面的map集合
+            Field mPackagesField = activityThreadClass.getDeclaredField("mPackages");
+            mPackagesField.setAccessible(true);
+            ArrayMap mPackages = (ArrayMap) mPackagesField.get(sCurrentActivityThread);
+
+            //3.通过插件apk解析后生成对应的插件LoadedApk
+            // LAUNCH_ACTIVITY
+            //final ActivityClientRecord r = (ActivityClientRecord) msg.obj;
+            //r.packageInfo = getPackageInfoNoCheck(r.activityInfo.applicationInfo, r.compatInfo);
+            //r.packageInfo 这个就是一个LoadedApk对象
+
+            //CompatibilityInfo是做兼容的一个类 我们只要获取它里面默认的即可
+            Class compatibilityInfoClass = Class.forName("android.content.res.CompatibilityInfo");
+            Field default_compatibility_info_Field = compatibilityInfoClass.getDeclaredField("DEFAULT_COMPATIBILITY_INFO");
+            Object default_compatibility_info = default_compatibility_info_Field.get(null);
+
+            Method getPackageInfoNoCheckMethod = activityThreadClass.getDeclaredMethod("getPackageInfoNoCheck", ApplicationInfo.class, compatibilityInfoClass);
+            //获取ApplicationInfo
+            ApplicationInfo applicationInfo = parseApplicationInfo(apkPath);
+            String packageName = applicationInfo.packageName;
+            Object loadedApk = getPackageInfoNoCheckMethod.invoke(sCurrentActivityThread, applicationInfo, default_compatibility_info);
+
+            String odexPath = FileUtil.getPluginOptDexDir(applicationInfo.packageName).getPath();
+            String libPath = FileUtil.getPluginLibDir(applicationInfo.packageName).getPath();
+
+            ClassLoader pluginClassLoader = new LoadedPluginClassLoader(apkPath, odexPath, libPath, context.getClassLoader());
+            //找到LoadedApk中的mClassLoader 然后进行替换
+            Field mClassLoaderField = loadedApk.getClass().getDeclaredField("mClassLoader");
+            mClassLoaderField.setAccessible(true);
+            mClassLoaderField.set(loadedApk, pluginClassLoader);
+
+            WeakReference<Object> refLoadedApk = new WeakReference<>(loadedApk);
+            //key：包名， value：LoadedApk
+            mPackages.put(packageName,refLoadedApk);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 根据apk解析出ApplicationInfo
+     * @param apkPath
+     * @return
+     */
+    private ApplicationInfo parseApplicationInfo(String apkPath){
+        try {
+            Class packageParserClass = Class.forName("android.content.pm.PackageParser");
+            Object packageParser = packageParserClass.newInstance();
+            Method parsePackageMethod = packageParserClass.getDeclaredMethod("parsePackage", File.class, int.class);
+            //通过PackageParser的parsePackage()方法获取到Package对象 PackageParser.Package
+            Object packageObj = parsePackageMethod.invoke(packageParser, new File(apkPath), PackageManager.GET_ACTIVITIES);
+
+            Class packageUserStateClass = Class.forName("android.content.pm.PackageUserState");
+            Object packageUserState = packageUserStateClass.newInstance();
+
+            Method generateApplicationInfoMethod = packageParserClass.getDeclaredMethod("generateApplicationInfo",
+                    packageObj.getClass(),
+                    int.class,
+                    packageUserStateClass);
+            ApplicationInfo applicationInfo = (ApplicationInfo) generateApplicationInfoMethod.
+                    invoke(packageParser, packageObj, 0, packageUserState);
+            applicationInfo.sourceDir = apkPath;
+            applicationInfo.publicSourceDir = apkPath;
+
+            return applicationInfo;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 我们想在点击的时候做点事情 点进去 View.serOnClickListener() --> getListenerInfo().mOnClickListener = l;

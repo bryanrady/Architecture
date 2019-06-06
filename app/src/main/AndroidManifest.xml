@@ -41,9 +41,11 @@
         <activity android:name=".plugin.hook.ams.LoginProxyActivity" />
         <activity android:name=".plugin.hook.system_service.ClipboardManagerActivity" />
 
-        <activity android:name=".plugin.binder.BinderClientActivity" />
-
         <activity android:name=".plugin.hook.dex_elements.DexElementsActivity" />
+
+        <activity android:name=".plugin.hook.loadedapk.LoadedApkActivity" />
+
+        <activity android:name=".plugin.binder.BinderClientActivity" />
 
         <!--  插件化 end  -->
 

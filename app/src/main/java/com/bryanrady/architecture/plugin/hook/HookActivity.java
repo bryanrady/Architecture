@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bryanrady.architecture.BaseActivity;
 import com.bryanrady.architecture.R;
 import com.bryanrady.architecture.plugin.hook.dex_elements.DexElementsActivity;
+import com.bryanrady.architecture.plugin.hook.loadedapk.LoadedApkActivity;
 import com.bryanrady.architecture.plugin.hook.system_service.ClipboardManagerActivity;
 import com.bryanrady.architecture.plugin.hook.ams.LoginMainActivity;
 
@@ -30,6 +31,9 @@ public class HookActivity extends BaseActivity{
 
     @BindView(R.id.btn_plugin_hook_dex_elements)
     Button btn_plugin_hook_dex_elements;
+
+    @BindView(R.id.btn_plugin_hook_loadedApk)
+    Button btn_plugin_hook_loadedApk;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -65,7 +69,8 @@ public class HookActivity extends BaseActivity{
 
     }
 
-    @OnClick({R.id.ll_toolbar_back,R.id.btn_plugin_hook_login,R.id.btn_plugin_hook_clipboard_service,R.id.btn_plugin_hook_dex_elements})
+    @OnClick({R.id.ll_toolbar_back,R.id.btn_plugin_hook_login,R.id.btn_plugin_hook_clipboard_service,
+            R.id.btn_plugin_hook_dex_elements,R.id.btn_plugin_hook_loadedApk})
     void onClick(View view){
         switch (view.getId()){
             case R.id.ll_toolbar_back:
@@ -79,6 +84,9 @@ public class HookActivity extends BaseActivity{
                 break;
             case R.id.btn_plugin_hook_dex_elements:
                 startActivity(DexElementsActivity.class);
+                break;
+            case R.id.btn_plugin_hook_loadedApk:
+                startActivity(LoadedApkActivity.class);
                 break;
         }
     }
