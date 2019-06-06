@@ -16,7 +16,7 @@
         android:layout_marginRight="20dp"
         android:layout_centerHorizontal="true"
         android:textAllCaps="false"
-        android:text="Hook 实现集中式登录" />
+        android:text="Hook 绕开AMS检查实现集中式登录" />
 
     <Button
         android:id="@+id/btn_plugin_hook_clipboard_service"
@@ -29,5 +29,17 @@
         android:layout_centerHorizontal="true"
         android:textAllCaps="false"
         android:text="Hook 拦截剪贴板系统服务" />
+
+    <Button
+        android:id="@+id/btn_plugin_hook_dex_elements"
+        android:layout_below="@+id/btn_plugin_hook_clipboard_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+        android:text="融合dexElements数组实现集中式登录" />
 
 </RelativeLayout>

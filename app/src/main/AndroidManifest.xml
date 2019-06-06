@@ -31,19 +31,19 @@
         <!--  插件化 start  -->
 
         <activity android:name=".plugin.PluginActivity" />
-        <activity android:name=".plugin.insert.AliPayActivity" />
+        <activity android:name=".plugin.insert.AliPayInsertActivity" />
         <activity android:name=".plugin.insert.ProxyActivity" />
         <service  android:name=".plugin.insert.ProxyService"/>
         <receiver android:name=".plugin.insert.ProxyBroadcastReceiver"/>
 
         <activity android:name=".plugin.hook.HookActivity" />
-        <activity android:name=".plugin.hook.login.LoginMainActivity" />
-        <activity android:name=".plugin.hook.login.LoginProxyActivity" />
-        <activity android:name=".plugin.hook.clipboard.ClipboardManagerActivity" />
+        <activity android:name=".plugin.hook.ams.LoginMainActivity" />
+        <activity android:name=".plugin.hook.ams.LoginProxyActivity" />
+        <activity android:name=".plugin.hook.system_service.ClipboardManagerActivity" />
 
         <activity android:name=".plugin.binder.BinderClientActivity" />
 
-        <activity android:name=".plugin.load_apk.LoadMainActivity" />
+        <activity android:name=".plugin.hook.dex_elements.DexElementsActivity" />
 
         <!--  插件化 end  -->
 

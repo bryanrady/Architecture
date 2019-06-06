@@ -44,7 +44,7 @@ public class FrameApplication extends Application {
         hookUtil.hookMHHandleMessage(this);
         hookUtil.hookClipSystemService(this);
 
-        String apkPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/plugin/plugin_load_apk.apk";
+        String apkPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/plugin/dexelements.apk";
         String apkCachePath = getCacheDir().getAbsolutePath();
         //1.合并class
         injectPluginClass(apkPath, apkCachePath);

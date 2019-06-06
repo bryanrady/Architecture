@@ -1,1 +1,1 @@
-include ':app', ':plugin_taopiaopiao', ':pluginstandard', ':lib_permission', ':remoteprocess', ':plugin_load_apk'
+include ':app', ':plugin_taopiaopiao', ':pluginstandard', ':lib_permission', ':remoteprocess', ':plugin_dexelements', ':plugin_loadeapk'

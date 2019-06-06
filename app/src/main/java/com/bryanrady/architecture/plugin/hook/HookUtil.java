@@ -1,7 +1,6 @@
 package com.bryanrady.architecture.plugin.hook;
 
 import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -13,11 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.bryanrady.architecture.plugin.hook.login.LoginFirstActivity;
-import com.bryanrady.architecture.plugin.hook.login.LoginLoginActivity;
-import com.bryanrady.architecture.plugin.hook.login.LoginProxyActivity;
-import com.bryanrady.architecture.plugin.hook.login.LoginSecondActivity;
-import com.bryanrady.architecture.plugin.hook.login.LoginThirdActivity;
+import com.bryanrady.architecture.plugin.hook.ams.LoginFirstActivity;
+import com.bryanrady.architecture.plugin.hook.ams.LoginLoginActivity;
+import com.bryanrady.architecture.plugin.hook.ams.LoginProxyActivity;
+import com.bryanrady.architecture.plugin.hook.ams.LoginSecondActivity;
+import com.bryanrady.architecture.plugin.hook.ams.LoginThirdActivity;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
@@ -82,12 +81,12 @@ public class HookUtil {
             Object realIActivityManager = mInstance;
 
             //使用动态代理   第二参数  是即将返回的对象 这里就是实现了系统中IActivityManager的所有接口
-            ProxyIActivityManagerImpl proxyIActivityManagerImpl = new ProxyIActivityManagerImpl(context, realIActivityManager);
+            IActivityManagerHandler iActivityManagerHandler = new IActivityManagerHandler(context, realIActivityManager);
 
             //寻找 IActivityManager 系统对象  这样动态代理对象就会实现IActivityManager中的所有方法
             Class iActivityManagerClass = Class.forName("android.app.IActivityManager");
             Object proxyIActivityManager = Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(),
-                    new Class[]{iActivityManagerClass},proxyIActivityManagerImpl);
+                    new Class[]{iActivityManagerClass},iActivityManagerHandler);
 
             //将系统的IActivityManager 替换成 自己通过动态代理实现的对象  proxyIActivityManager
 
@@ -99,11 +98,11 @@ public class HookUtil {
     }
 
     //动态代理方式
-    class ProxyIActivityManagerImpl implements InvocationHandler{
+    class IActivityManagerHandler implements InvocationHandler{
         private Context mContext;
         private Object mRealIActivityManager;
 
-        public ProxyIActivityManagerImpl(Context context,Object realIActivityManager){
+        public IActivityManagerHandler(Context context,Object realIActivityManager){
             this.mContext = context;
             this.mRealIActivityManager = realIActivityManager;
         }
@@ -194,6 +193,7 @@ public class HookUtil {
             if (msg.what == 100){
                 //加工 --完  一定丢给系统  secondActivity  -hook->proxyActivity---hook->    secondeActivtiy
                 try {
+                    // obj实际上是 ActivityClientRecord
                     Object obj = msg.obj;
                     Field intentField = obj.getClass().getDeclaredField("intent");
                     intentField.setAccessible(true);
@@ -213,7 +213,7 @@ public class HookUtil {
                     e.printStackTrace();
                 }
             }
-            //做了真正的跳转
+            //继续执行系统的处理消息的方法
             mH.handleMessage(msg);
             return true;
         }
@@ -242,9 +242,9 @@ public class HookUtil {
                 || LoginFirstActivity.class.getName().equals(className)
                 || LoginSecondActivity.class.getName().equals(className)
                 || LoginThirdActivity.class.getName().equals(className)
-                ||"com.bryanrady.plugin_load_apk.LoadFirstActivity".equals(className)
-                ||"com.bryanrady.plugin_load_apk.LoadSecondActivity".equals(className)
-                ||"com.bryanrady.plugin_load_apk.LoadThirdActivity".equals(className)
+                ||"com.bryanrady.dexelements.LoadFirstActivity".equals(className)
+                ||"com.bryanrady.dexelements.LoadSecondActivity".equals(className)
+                ||"com.bryanrady.dexelements.LoadThirdActivity".equals(className)
                 ){
             return true;
         }
@@ -293,6 +293,8 @@ public class HookUtil {
         public void onClick(View v) {
             Toast.makeText(mContext, "hook click", Toast.LENGTH_SHORT).show();
             Log.d("wangqingbin","Before Click   do what you want to to.");
+
+            //继续执行系统的点击方法
             if (mOnClickListener != null) {
                 mOnClickListener.onClick(v);
             }
@@ -364,7 +366,9 @@ public class HookUtil {
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
             Log.d("wangqingbin","method --》"+method.getName());
+
             if("queryLocalInterface".equals(method.getName())){
                 Log.d("wangqingbin","hook -- queryLocalInterface");
 
