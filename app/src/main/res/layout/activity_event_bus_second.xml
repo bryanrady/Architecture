@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <include layout="@layout/toolbar_layout"/>
+
+    <Button
+        android:id="@+id/btn_event_bus_next_send_main"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="发送UI操作消息" />
+
+    <Button
+        android:id="@+id/btn_event_bus_next_send_background"
+        android:layout_below="@+id/btn_event_bus_next_send_main"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="发送耗时操作消息" />
+
+    <TextView
+        android:id="@+id/tv_event_bus_next_info"
+        android:layout_below="@+id/btn_event_bus_next_send_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

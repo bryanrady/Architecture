@@ -1,19 +1,19 @@
-package com.bryanrady.loadedapk;
+package com.bryanrady.architecture.ioc;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
+import android.support.v7.app.AppCompatActivity;
 
 /**
- * Created by 48608 on 2018/1/12.
+ * Created by Administrator on 2019/6/24.
  */
 
-public class LoadedFirstActivity extends Activity {
+public class IocBaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_plugin_hook_login_first);
+        InjectUtils.inject(this);
     }
-
 }

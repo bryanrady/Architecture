@@ -56,8 +56,29 @@
                 android:text="Dagger2" />
 
             <Button
-                android:id="@+id/btn_eventbus"
+                android:id="@+id/btn_ioc"
                 android:layout_below="@+id/btn_dagger2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="IOC" />
+
+
+            <Button
+                android:id="@+id/btn_butterknife"
+                android:layout_below="@+id/btn_ioc"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="Butterknife" />
+
+            <Button
+                android:id="@+id/btn_eventbus"
+                android:layout_below="@+id/btn_butterknife"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

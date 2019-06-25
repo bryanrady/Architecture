@@ -24,6 +24,7 @@
         android:text="跳转界面3"
         android:onClick="jump3" />
     <Button
+        android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="退出登录"

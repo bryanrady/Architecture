@@ -53,7 +53,7 @@ public class LoadedApkActivity extends BaseActivity {
 
     @Override
     public void doBusiness(Context context) {
-
+        findViewById(R.id.logout).setVisibility(View.GONE);
     }
 
     public void jump1(View view) {

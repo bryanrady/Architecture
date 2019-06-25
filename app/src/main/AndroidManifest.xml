@@ -147,6 +147,24 @@
 
         <!--  Aop end  -->
 
+
+        <!--  IOC start  -->
+
+        <activity
+            android:name=".ioc.IocActivity" />
+
+        <!--  IOC end  -->
+
+
+        <!--  EventBus start  -->
+
+        <activity
+            android:name=".eventbus.EventBusActivity" />
+        <activity
+            android:name=".eventbus.EventBusSecondActivity" />
+
+        <!--  EventBus end  -->
+
     </application>
 
 </manifest>

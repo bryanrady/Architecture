@@ -60,9 +60,9 @@ public class FrameApplication extends Application {
         String apkPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/plugin/dexelements.apk";
         String apkCachePath = getCacheDir().getAbsolutePath();
         //融合class
-    //    injectPluginClass(apkPath, apkCachePath);
+        injectPluginClass(apkPath, apkCachePath);
         //融合resource
-    //    loadPluginResources(apkPath);
+        loadPluginResources(apkPath);
 
         //3.hook + 构建LoadedApk添加到map集合中实现集中式登录
         String apkPath2 = Environment.getExternalStorageDirectory().getAbsolutePath() + "/plugin/loadedapk.apk";
