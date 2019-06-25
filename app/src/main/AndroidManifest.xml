@@ -148,12 +148,12 @@
         <!--  Aop end  -->
 
 
-        <!--  IOC start  -->
 
         <activity
             android:name=".ioc.IocActivity" />
+        <activity
+            android:name=".isolation.IsolationActivity" />
 
-        <!--  IOC end  -->
 
 
         <!--  EventBus start  -->

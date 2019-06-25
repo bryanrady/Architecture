@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bryanrady.architecture.aop.AopUseActivity;
 import com.bryanrady.architecture.eventbus.EventBusActivity;
 import com.bryanrady.architecture.ioc.IocActivity;
+import com.bryanrady.architecture.isolation.IsolationActivity;
 import com.bryanrady.architecture.plugin.PluginActivity;
 import com.bryanrady.architecture.rx.RxJavaOperatorActivity;
 
@@ -40,6 +41,9 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.btn_butterknife)
     Button btn_butterknife;
+
+    @BindView(R.id.btn_isolation)
+    Button btn_isolation;
 
     @BindView(R.id.btn_eventbus)
     Button btn_eventbus;
@@ -90,7 +94,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @OnClick({R.id.btn_plugin,R.id.btn_rxJava,R.id.btn_aop,R.id.btn_dagger2,R.id.btn_ioc,R.id.btn_butterknife,
-            R.id.btn_eventbus, R.id.btn_hermes,R.id.btn_glide,R.id.btn_mvp,R.id.btn_retrofit,})
+            R.id.btn_isolation,R.id.btn_eventbus, R.id.btn_hermes,R.id.btn_glide,R.id.btn_mvp,R.id.btn_retrofit,})
     void onClick(View view){
         switch (view.getId()){
             case R.id.btn_plugin:
@@ -108,6 +112,9 @@ public class MainActivity extends BaseActivity {
                 startActivity(IocActivity.class);
                 break;
             case R.id.btn_butterknife:
+                break;
+            case R.id.btn_isolation:
+                startActivity(IsolationActivity.class);
                 break;
             case R.id.btn_eventbus:
                 startActivity(EventBusActivity.class);

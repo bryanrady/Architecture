@@ -48,4 +48,8 @@ dependencies {
     implementation project(':lib_permission')
     //eventbus
     implementation 'org.greenrobot:eventbus:3.0.0'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+
 }
