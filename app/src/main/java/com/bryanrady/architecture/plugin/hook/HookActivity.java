@@ -1,7 +1,6 @@
 package com.bryanrady.architecture.plugin.hook;
 
 import android.content.Context;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -9,11 +8,12 @@ import android.widget.TextView;
 
 import com.bryanrady.architecture.BaseActivity;
 import com.bryanrady.architecture.R;
+import com.bryanrady.architecture.plugin.hook.ams.LoginMainActivity;
 import com.bryanrady.architecture.plugin.hook.dex_elements.DexElementsActivity;
 import com.bryanrady.architecture.plugin.hook.loadedapk.LoadedApkActivity;
 import com.bryanrady.architecture.plugin.hook.system_service.ClipboardManagerActivity;
-import com.bryanrady.architecture.plugin.hook.ams.LoginMainActivity;
 
+import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.OnClick;
 

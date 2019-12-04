@@ -1,11 +1,12 @@
 package com.bryanrady.architecture;
 
+import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Environment;
-import android.support.v4.app.NavUtils;
 import android.util.Log;
 
 import com.bryanrady.architecture.plugin.hook.HookUtil;
@@ -14,7 +15,6 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import butterknife.ButterKnife;
 import dalvik.system.BaseDexClassLoader;
 import dalvik.system.DexClassLoader;
 import dalvik.system.PathClassLoader;
@@ -81,6 +81,7 @@ public class FrameApplication extends Application {
      * @param apkPath       插件apk目录，从网络下载后放在sd卡
      * @param cachePath     插件apk缓存目录
      */
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     private void injectPluginClass(String apkPath, String cachePath){
         if(apkPath == null || cachePath == null){
             return;

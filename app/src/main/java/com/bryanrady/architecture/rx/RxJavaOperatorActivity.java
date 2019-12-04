@@ -1,12 +1,10 @@
 package com.bryanrady.architecture.rx;
 
 import android.content.Context;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 
 import com.bryanrady.architecture.BaseActivity;
 import com.bryanrady.architecture.R;
@@ -17,6 +15,7 @@ import com.bryanrady.architecture.rx.operator.FilterOperatorActivity;
 import com.bryanrady.architecture.rx.operator.MergeOperatorActivity;
 import com.bryanrady.architecture.rx.operator.TransferOperatorActivity;
 
+import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.OnClick;
 

@@ -3,7 +3,6 @@ package com.bryanrady.architecture.plugin.hook.ams;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,6 +12,7 @@ import com.bryanrady.architecture.BaseActivity;
 import com.bryanrady.architecture.R;
 import com.bryanrady.architecture.plugin.hook.HookUtil;
 
+import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 
 /**

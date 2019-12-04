@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 
 import com.bryanrady.pluginstandard.PluginInterfaceService;
 import java.lang.reflect.Constructor;
@@ -19,7 +18,6 @@ public class ProxyService extends Service {
     private String mServiceName;
     private PluginInterfaceService mPluginInterfaceService;
 
-    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         init(intent);

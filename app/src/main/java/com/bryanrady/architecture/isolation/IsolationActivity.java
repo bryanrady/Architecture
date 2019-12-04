@@ -1,19 +1,14 @@
 package com.bryanrady.architecture.isolation;
 
 import android.content.Context;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bryanrady.architecture.BaseActivity;
 import com.bryanrady.architecture.R;
-import com.bryanrady.architecture.eventbus.EventBusSecondActivity;
-import com.bryanrady.architecture.eventbus.MessageEvent;
 import com.bryanrady.architecture.isolation.bean.WeatherInfo;
 import com.bryanrady.architecture.isolation.image.ImageLoaderPresenter;
 import com.bryanrady.architecture.isolation.image.glide.GlideImageLoader;
@@ -21,11 +16,10 @@ import com.bryanrady.architecture.isolation.net.HttpRequestPresenter;
 import com.bryanrady.architecture.isolation.net.ModelCallback;
 import com.bryanrady.architecture.isolation.net.async.AsyncHttpRequest;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.OnClick;
 

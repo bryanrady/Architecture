@@ -1,8 +1,6 @@
 package com.bryanrady.architecture.ioc;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -14,6 +12,8 @@ import com.bryanrady.architecture.ioc.annotation.ContentView;
 import com.bryanrady.architecture.ioc.annotation.OnClick;
 import com.bryanrady.architecture.ioc.annotation.OnLongClick;
 import com.bryanrady.architecture.ioc.annotation.ViewInject;
+
+import androidx.appcompat.widget.Toolbar;
 
 
 /**
@@ -42,7 +42,7 @@ public class IocActivity extends IocBaseActivity {
     TextView tvRightTitle;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         llBack.setVisibility(View.VISIBLE);
         tvToolbarTitle.setText("Xutils IOC 框架");

@@ -1,7 +1,6 @@
 package com.bryanrady.architecture.eventbus;
 
 import android.content.Context;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,13 +9,12 @@ import android.widget.TextView;
 
 import com.bryanrady.architecture.BaseActivity;
 import com.bryanrady.architecture.R;
-import com.bryanrady.architecture.aop.BehaviorStatisticsActivity;
-import com.bryanrady.architecture.aop.DynamicPermissionActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.OnClick;
 

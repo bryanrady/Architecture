@@ -3,7 +3,6 @@ package com.bryanrady.architecture.ioc;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 
 /**
@@ -11,7 +10,7 @@ import android.support.annotation.NonNull;
  */
 
 public class BaseDialog extends Dialog {
-    public BaseDialog(@NonNull Context context) {
+    public BaseDialog(Context context) {
         super(context);
     }
 

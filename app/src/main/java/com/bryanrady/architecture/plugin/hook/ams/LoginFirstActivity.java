@@ -1,7 +1,6 @@
 package com.bryanrady.architecture.plugin.hook.ams;
 
 import android.content.Context;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -9,6 +8,7 @@ import android.widget.TextView;
 import com.bryanrady.architecture.BaseActivity;
 import com.bryanrady.architecture.R;
 
+import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 
 /**

@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.util.SimpleArrayMap;
 
 
 import com.bryanrady.lib_permission.menu.Default;
@@ -18,6 +15,10 @@ import com.bryanrady.lib_permission.menu.base.IMenu;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
+
+import androidx.collection.SimpleArrayMap;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 /**
  * Created by Administrator on 2019/2/26.

@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.bryanrady.pluginstandard.PluginInterfaceActivity;
@@ -29,7 +28,7 @@ public class ProxyActivity extends Activity {
     private PluginInterfaceActivity mPluginInterfaceActivity;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivityName = getIntent().getStringExtra("activityName");
         Log.d("wangqingbin","mActivityName == "+ mActivityName);

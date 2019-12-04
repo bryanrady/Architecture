@@ -5,14 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 
 import com.bryanrady.lib_permission.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.core.app.ActivityCompat;
 
 /**
  * 一个透明的Activity 专门用来做权限申请
@@ -49,7 +48,7 @@ public class PermissionActivity extends Activity {
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permission_layout);
 
@@ -74,7 +73,7 @@ public class PermissionActivity extends Activity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         //请求权限成功

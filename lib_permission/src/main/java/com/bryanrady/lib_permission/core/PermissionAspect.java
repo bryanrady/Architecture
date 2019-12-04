@@ -12,6 +12,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
+import androidx.fragment.app.Fragment;
+
 /**
  * 定义切面
  * Created by Administrator on 2019/2/26.
@@ -33,8 +35,8 @@ public class PermissionAspect {
         final Object aThis = joinPoint.getThis();
         if(aThis instanceof Context){
             context = (Context) aThis;
-        }else if (aThis instanceof android.support.v4.app.Fragment) {
-            context = ((android.support.v4.app.Fragment) aThis).getActivity();
+        }else if (aThis instanceof Fragment) {
+            context = ((Fragment) aThis).getActivity();
         } else if (aThis instanceof android.app.Fragment) {
             context = ((android.app.Fragment) aThis).getActivity();
         } else {

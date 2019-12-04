@@ -3,7 +3,6 @@ package com.bryanrady.architecture.plugin.hook.system_service;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import com.bryanrady.architecture.BaseActivity;
 import com.bryanrady.architecture.R;
 
+import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 
 /**

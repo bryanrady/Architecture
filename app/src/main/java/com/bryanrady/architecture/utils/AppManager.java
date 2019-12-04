@@ -2,13 +2,14 @@ package com.bryanrady.architecture.utils;
 
 import android.app.ActivityManager;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.Stack;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by pengyu520 on 2016/7/26.

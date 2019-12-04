@@ -3,13 +3,10 @@ package com.bryanrady.architecture.aop;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 
 import com.bryanrady.architecture.BaseActivity;
 import com.bryanrady.architecture.R;
@@ -17,6 +14,8 @@ import com.bryanrady.lib_permission.annotation.NeedPermission;
 import com.bryanrady.lib_permission.annotation.PermissionCanceled;
 import com.bryanrady.lib_permission.annotation.PermissionDenied;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.OnClick;
 
