@@ -1,7 +1,7 @@
 package com.bryanrady.dexelements;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
+import androidx.annotation.Nullable;
 
 /**
  * Created by 48608 on 2018/1/12.
