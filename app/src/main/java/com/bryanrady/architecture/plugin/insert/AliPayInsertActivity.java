@@ -160,14 +160,23 @@ public class AliPayInsertActivity extends BaseActivity {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            Toast.makeText(this,"内置卡中没有插件apk",Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            try {
-                is.close();
-                fos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (is != null){
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (fos != null){
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
