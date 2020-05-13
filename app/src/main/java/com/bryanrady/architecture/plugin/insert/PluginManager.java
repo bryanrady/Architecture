@@ -97,8 +97,6 @@ public class PluginManager {
             Class userHandlerClass = Class.forName("android.os.UserHandle");
             Method getCallingUserIdMethod = userHandlerClass.getDeclaredMethod("getCallingUserId");
             int userId = (int) getCallingUserIdMethod.invoke(null);
-            //不明白userId为什么是0
-            Log.d("wangqingbin","userId=="+userId);
 
             //第四步: 将得到Component组件中的intents字段
             Class componentClass = Class.forName("android.content.pm.PackageParser$Component");
@@ -113,10 +111,10 @@ public class PluginManager {
                 PackageItemInfo packageItemInfo = activityInfo;
 
                 //packageItemInfo.name  -->  Public name of this item. From the "android:name" attribute. -->receiver的全类名
-                Class receiverClassName = getDexClassLoader().loadClass(packageItemInfo.name);
-                BroadcastReceiver receiver = (BroadcastReceiver) receiverClassName.newInstance();
+                Class receiverClass = getDexClassLoader().loadClass(packageItemInfo.name);
+                BroadcastReceiver receiver = (BroadcastReceiver) receiverClass.newInstance();
 
-                //得到每一个组件的intentFilter 一个Receicer可能对应多个intentFilter
+                //得到每一个组件的intentFilter 一个Receiver可能对应多个intentFilter
                 ArrayList<? extends IntentFilter> intents = (ArrayList<? extends IntentFilter>) intentsField.get(activity);
 
                 for (IntentFilter intentFilter : intents) {
