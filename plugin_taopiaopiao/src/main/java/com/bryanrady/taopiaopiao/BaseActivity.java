@@ -92,7 +92,6 @@ public class BaseActivity extends Activity implements PluginInterfaceActivity {
             //        ProxyActivity --->className
             Intent m = new Intent();
             m.putExtra("activityName", intent.getComponent().getClassName());
-            Log.d("wangqingbin","activityName =="+intent.getComponent().getClassName());
             mThat.startActivity(m);
         }else{
             super.startActivity(intent);
@@ -105,7 +104,6 @@ public class BaseActivity extends Activity implements PluginInterfaceActivity {
         if (mThat != null){
             Intent m = new Intent();
             m.putExtra("serviceName", service.getComponent().getClassName());
-            Log.d("wangqingbin","serviceName =="+service.getComponent().getClassName());
             return mThat.startService(m);
         }
         return super.startService(service);
