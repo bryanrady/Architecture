@@ -167,6 +167,9 @@
 
         <!--  EventBus end  -->
 
+        <activity
+            android:name=".databind.DataBindingUseActivity" />
+
     </application>
 
 </manifest>

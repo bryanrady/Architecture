@@ -26,8 +26,28 @@
                 android:text="插件化" />
 
             <Button
-                android:id="@+id/btn_rxJava"
+                android:id="@+id/btn_okHttp"
                 android:layout_below="@+id/btn_plugin"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="OkHttp" />
+
+            <Button
+                android:id="@+id/btn_retrofit"
+                android:layout_below="@+id/btn_okHttp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="Retrofit" />
+
+            <Button
+                android:id="@+id/btn_rxJava"
+                android:layout_below="@+id/btn_retrofit"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -36,18 +56,28 @@
                 android:text="RxJava" />
 
             <Button
-                android:id="@+id/btn_aop"
+                android:id="@+id/btn_glide"
                 android:layout_below="@+id/btn_rxJava"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_centerHorizontal="true"
                 android:textAllCaps="false"
-                android:text="Aop" />
+                android:text="Glide" />
+
+            <Button
+                android:id="@+id/btn_eventbus"
+                android:layout_below="@+id/btn_glide"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="EventBus" />
 
             <Button
                 android:id="@+id/btn_dagger2"
-                android:layout_below="@+id/btn_aop"
+                android:layout_below="@+id/btn_eventbus"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -56,8 +86,58 @@
                 android:text="Dagger2" />
 
             <Button
-                android:id="@+id/btn_ioc"
+                android:id="@+id/btn_mvp"
                 android:layout_below="@+id/btn_dagger2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="MVP" />
+
+            <Button
+                android:id="@+id/btn_data_binding"
+                android:layout_below="@+id/btn_mvp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="DataBinding" />
+
+            <Button
+                android:id="@+id/btn_mvvm"
+                android:layout_below="@+id/btn_data_binding"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="MVVM" />
+
+            <Button
+                android:id="@+id/btn_aop"
+                android:layout_below="@+id/btn_mvvm"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="Aop" />
+
+            <Button
+                android:id="@+id/btn_hermes"
+                android:layout_below="@+id/btn_aop"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:text="Hermes" />
+
+            <Button
+                android:id="@+id/btn_ioc"
+                android:layout_below="@+id/btn_hermes"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -75,66 +155,17 @@
                 android:layout_centerHorizontal="true"
                 android:textAllCaps="false"
                 android:text="Butterknife" />
+
             <Button
                 android:id="@+id/btn_isolation"
                 android:layout_below="@+id/btn_butterknife"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_centerHorizontal="true"
                 android:textAllCaps="false"
                 android:text="第三方框架再隔离" />
-
-            <Button
-                android:id="@+id/btn_eventbus"
-                android:layout_below="@+id/btn_isolation"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true"
-                android:textAllCaps="false"
-                android:text="EventBus" />
-
-            <Button
-                android:id="@+id/btn_hermes"
-                android:layout_below="@+id/btn_eventbus"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true"
-                android:textAllCaps="false"
-                android:text="Hermes" />
-
-            <Button
-                android:id="@+id/btn_glide"
-                android:layout_below="@+id/btn_hermes"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true"
-                android:textAllCaps="false"
-                android:text="Glide" />
-
-            <Button
-                android:id="@+id/btn_mvp"
-                android:layout_below="@+id/btn_glide"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true"
-                android:textAllCaps="false"
-                android:text="MVP" />
-
-            <Button
-                android:id="@+id/btn_retrofit"
-                android:layout_below="@+id/btn_mvp"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true"
-                android:textAllCaps="false"
-                android:text="Retrofit" />
-
 
         </RelativeLayout>
 

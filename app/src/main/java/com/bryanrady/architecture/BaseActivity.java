@@ -35,7 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             tintManager.setStatusBarTintEnabled(true);
             tintManager.setStatusBarTintResource(R.color.colorPrimaryDark);//通知栏所需颜色
         }
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//设置所有的Activity竖屏显示
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);//设置所有的Activity竖屏显示
 
         AppManager.getAppManager().addActivity(this);
         View view = LayoutInflater.from(this).inflate(bindLayout(),null);

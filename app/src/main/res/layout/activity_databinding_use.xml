@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--此处定义该布局要用的数据的名称和类型 -->
+    <data>
+        <variable
+            name="user"
+            type="com.bryanrady.architecture.databind.User" />
+        <variable
+            name="animal"
+            type="com.bryanrady.architecture.databind.Animal" />
+    </data>
+
+    <!--下面的内容就和平时的布局文件一样-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            app:headerPath="@{user.headerPath}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="@{`名称:` + animal.name}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="@{`体重:` + animal.weight}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="@{`姓名:` + user.name}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="@{`性别:` + user.sex}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="@{`年龄:` + user.age}"/>
+    </LinearLayout>
+
+</layout>
